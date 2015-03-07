@@ -1,0 +1,70 @@
+USE_CAMERA_STUB := true
+
+# inherit from the proprietary version
+-include vendor/samsung/kylevezn/BoardConfigVendor.mk
+
+TARGET_ARCH := arm
+TARGET_NO_BOOTLOADER := true
+TARGET_BOARD_PLATFORM := hawaii
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_TLS_REGISTER := true
+
+TARGET_BOOTLOADER_BOARD_NAME := kylevezn
+
+BOARD_KERNEL_CMDLINE := 
+BOARD_KERNEL_BASE := 0x82000000
+BOARD_KERNEL_PAGESIZE := 4096
+
+# fix this up by examining /proc/mtd on a running device
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x105c0000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x105c0000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
+BOARD_FLASH_BLOCK_SIZE := 131072
+
+TARGET_PREBUILT_KERNEL := device/samsung/kylevezn/kernel
+
+#Team Win Recovery Project
+DEVICE_RESOLUTION := 480x800
+#RECOVERY_GRAPHICS_USE_LINELENGTH := true
+TW_FLASH_FROM_STORAGE := true
+RECOVERY_SDCARD_ON_DATA := true
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_NO_REBOOT_BOOTLOADER := true
+TW_HAS_DOWNLOAD_MODE := true
+BOARD_HAS_NO_REAL_SDCARD := true
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/platform/dwc_otg/gadget/lun0/file
+TW_BRIGHTNESS_PATH := \"/sys/devices/platform/panel/backlight/panel/brightness\"
+TW_MAX_BRIGHTNESS := 160
+
+#recovery
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/samsung/kylevezn/recovery/recovery_keys.c
+TARGET_RECOVERY_INITRC := device/samsung/kylevezn/recovery/recovery.rc
+TARGET_RECOVERY_FSTAB := device/samsung/kylevezn/recovery/recovery.fstab
+BOARD_CHARGER_RES := device/samsung/kylevezn/recovery/charger
+TARGET_RECOVERY_LCD_BACKLIGHT_PATH := \"/sys/devices/platform/panel/backlight/panel/brightness\"
+TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
+#TARGET_SCREEN_WIDTH := 480
+#TARGET_SCREEN_HEIGHT := 800
+BOARD_RECOVERY_SWIPE := true
+BOARD_SUPPRESS_EMMC_WIPE := true
+BOARD_HAS_SDCARD_INTERNAL := false
+BOARD_HAS_DOWNLOAD_MODE := true
+BOARD_USES_MMCUTILS := true
+TARGET_USERIMAGES_USE_EXT4 := true
+BOARD_HAS_LARGE_FILESYSTEM := true
+BOARD_HAS_NO_MISC_PARTITION := true
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_LANG_CHINESE := true
+BOARD_USE_CUSTOM_RECOVERY_FONT := \"fontcn_15x24.h\"
+BOARD_NO_SECURE_DISCARD := true
+COMMON_GLOBAL_CFLAGS += -DNO_SECURE_DISCARD
+
+# Debug mode
+ADDITIONAL_DEFAULT_PROPERTIES += ro.debuggable=1
+ADDITIONAL_DEFAULT_PROPERTIES += ro.secure=0
